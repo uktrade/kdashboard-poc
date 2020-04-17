@@ -1,0 +1,13 @@
+django==3.0.3
+django-environ
+dj-database-url
+-e git+https://github.com/lgarvey/django-govuk-forms.git@master#egg=govuk_forms
+django-govuk-template==0.7
+psycopg2-binary
+python-dotenv
+django-staff-sso-client
+requests
+whitenoise
+gunicorn
+raven
+sentry_sdk

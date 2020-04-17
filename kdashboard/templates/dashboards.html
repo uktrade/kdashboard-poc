@@ -1,0 +1,18 @@
+<!-- howdy/templates/index.html -->
+{% extends 'gds_template.html' %}
+
+{% block inner_content %}
+        <div class ="page-body">
+
+
+        <form method="post">
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit" class="button" value="Search">
+        </form>
+      </div>
+      <p></p>
+      <p></p>
+
+
+{% endblock %}
