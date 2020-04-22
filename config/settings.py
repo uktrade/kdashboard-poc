@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.ProtectAllViewsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -124,13 +125,14 @@ GOVUK_SERVICE_SETTINGS = {
     #'header_link_view_name': 'staff_lookup',
 }
 
-LOGIN_REDIRECT_URL = 'admin:index'
+#LOGIN_REDIRECT_URL = 'admin:index'
 AUTH_USER_MODEL = 'user.User'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-LOGIN_REDIRECT_URL = 'admin-login-view'
+LOGIN_REDIRECT_URL = 'login-redirect'
+#LOGIN_REDIRECT_URL = 'admin-login-view'
 LOGIN_URL = '/auth/login/'
 AUTHBROKER_URL = os.getenv("AUTHBROKER_URL")
 AUTHBROKER_CLIENT_ID = os.getenv("AUTHBROKER_CLIENT_ID")
@@ -143,3 +145,6 @@ KIBANA_ADMIN_PASSWORD = os.getenv("KIBANA_ADMIN_PASSWORD")
 KIBANA_URL = os.getenv("KIBANA_URL")
 MASTER_DASHBOARD_TOKEN = os.getenv("MASTER_DASHBOARD_TOKEN")
 KIBANA_DOMAIN = os.getenv("KIBANA_DOMAIN")
+ELASTIC_USER = os.getenv("ELASTIC_USER")
+ELASTIC_PASSWORD = os.getenv("ELASTIC_PASSWORD")
+ELASTIC_DOMAIN = os.getenv("ELASTIC_DOMAIN")

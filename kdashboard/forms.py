@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import Dashboards#, AccessToDashboard
+
 from user.models import User
 
 from govuk_forms.forms import GOVUKForm
@@ -14,20 +15,20 @@ class StaffLookupForm(GOVUKForm):
         widget=widgets.TextInput())
 
 
-def get_dashboard_list(email):
+def get_dashboard_list(userid):
     #breakpoint()
 
-    #return Dashboards.objects.filter(user__id=1).values_list('id', 'dashboard_name')
-    return Dashboards.objects.filter(user__email=email).values_list('id', 'dashboard_name')
-    #return AccessToDashboard.objects.filter(dashboard_user_id=2).values_list('dashboard_item__id', 'dashboard_item__dashboard_name')
+    return Dashboards.objects.filter(user__user_id=userid).values_list('id', 'dashboard_name')
+
 
 
 class DashboardsForm(GOVUKForm):
     def __init__(self, *args, **kwargs):
-        email = kwargs.pop('email')
+        #email = kwargs.pop('email')
+        userid = kwargs.pop('userid')
         super().__init__(*args, **kwargs)
         #breakpoint()
-        self.fields['dashboard'].choices = get_dashboard_list(email)
+        self.fields['dashboard'].choices = get_dashboard_list(userid)
 
     dashboard = forms.ChoiceField(
         label='Which dashboard:',

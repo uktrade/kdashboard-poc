@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic import RedirectView
 from core.admin_views import admin_login_view
+from core.views import login_redirect_view
 
 from kdashboard.views import staff_lookup, dashboards, home_page
 
@@ -15,4 +16,5 @@ urlpatterns = [
     path('home/', home_page.as_view(), name='home_page'),
     path('search/', staff_lookup.as_view(), name='staff_lookup'),
     path('dashboards/', dashboards.as_view(), name='dashboards'),
+    path('login/redirect/', login_redirect_view, name='login-redirect'),
 ]

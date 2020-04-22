@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from kdashboard.models import Dashboards
+
 
 class UserManager(BaseUserManager):
 
@@ -38,10 +40,15 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = None
+    dashboards = models.ManyToManyField(Dashboards)
 
     email = models.EmailField(_('email address'), unique=True)
 
-    USERNAME_FIELD = 'email'
+    user_id = models.UUIDField(primary_key=True)
+    USERNAME_FIELD = 'user_id'
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+    def __str__(self):
+        return str(self.email)
